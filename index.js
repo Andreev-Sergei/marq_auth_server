@@ -15,9 +15,15 @@ const PORT = process.env.PORT || 5005
 
 app.use(cookieParser());
 app.use(express.json())
-app.use(cors())
+
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
+
 app.use('/api_v1', router)
-app.use('/api_v1/core', coreRouter)
+
+
+app.use('/api_v1/core',  coreRouter)
+
+
 app.use(errorMiddleware) // middleware must be last element
 
 const startApp = async () => {

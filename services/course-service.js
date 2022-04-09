@@ -132,7 +132,6 @@ class CourseService {
         const lesson = {
             id,
             lessonName: 'FULL LESSON',
-
         }
         return lesson
     }

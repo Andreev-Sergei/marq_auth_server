@@ -5,4 +5,5 @@ const UserSchema = new Schema({
     password: {type: String, required: true},
     role: {type: String, default: 'TEACHER', required: true},
 })
+
 module.exports = model('User', UserSchema)

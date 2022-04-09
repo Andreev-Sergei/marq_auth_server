@@ -6,6 +6,7 @@ class UserController {
         try {
             const {email, password, role} = req.body
             const userData = await userService.register(email, password, role)
+
             res.cookie('refreshToken', userData.refreshToken, {
                 maxAge: 10 * 60 * 60 * 1000,
                 httpOnly: true
@@ -20,6 +21,7 @@ class UserController {
     async login(req, res, next) {
         try {
             const {email, password} = req.body
+            console.log(email, 'is loging')
             const userData = await userService.login(email, password)
             res.cookie('refreshToken', userData.refreshToken, {
                 maxAge: 10 * 60 * 60 * 1000,
@@ -28,6 +30,7 @@ class UserController {
             })
             res.json(userData)
         } catch (e) {
+            console.log('login filed')
             next(e)
         }
     }

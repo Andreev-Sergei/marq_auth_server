@@ -12,8 +12,8 @@ coreRouter.get('/course-list/:id', CourseController.getOneCourse)
 
 coreRouter.get('/lang/:id', CourseController.getOneLang)
 // coreRouter.post('/lang/:id', CourseController.addOneLang)
-coreRouter.put('/lang/:id', CourseController.editLang)
-
+// coreRouter.put('/lang/:id', CourseController.editLang)
+//
 coreRouter.get('/lesson/:id', CourseController.getOneLesson)
 
 module.exports = coreRouter

@@ -16,10 +16,11 @@ const loginUser = async (user) => {
 
 
 class UserService {
+
     async login(email, password) {
         const user = await UserModel.findOne({email})
         if (!user) {
-            throw new ApiError.BadRequest(`Пользователь потчовым адресом "${email}" не существует!`)
+            throw ApiError.BadRequest(`Пользователь потчовым адресом "${email}" не существует!`)
         }
         const passwordIsEqual = await bcrypt.compare(password, user.password)
         if (!passwordIsEqual) {
