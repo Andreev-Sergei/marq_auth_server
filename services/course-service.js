@@ -128,12 +128,67 @@ class CourseService {
         }
         return lesson
     }
-    async getOneFullLesson(id){
+    async getOneLesson(id, short){
+        const mockBoard = [
+            //{ blockId: 1, messages: ['hi how are u?', 'give a answer'], userInput: { id: 2 } }
+            //{ blockId: 2, messages: ['hi how are u?', 'give a answer'], userInput: { id: 2 } }
+            {
+                id: 1,
+                type: 'MESSAGE',
+                value: 'Middle! <i>It is test</i> message',
+                messageType: 'USUAL'
+            }, {
+                id: 11,
+                type: 'MESSAGE',
+                value: 'Hello! It <i>is test message</i> ',
+                messageType: 'USUAL'
+            },
+            {
+                id: 2,
+                type: 'MESSAGE',
+                value: '<i>Second test</i> message',
+                messageType: 'VOCABULARY'
+            },
+            {
+                id: 33,
+                type: 'MESSAGE',
+                value: 'Second <i>test</i> message',
+                messageType: 'VOCABULARY'
+            },
+            {
+                id: 4,
+                type: 'TASK',
+                taskType: 'INPUT',
+                typeTitle: 'Input',
+                keyboardType: 1,
+                variants: [
+                    {id: 1, word: 'собака', right: true},
+                    {id: 2, word: 'кошка', right: false}
+                ],
+                value: 'Dog - <i>собака</i>'
+            }
+
+        ]
         const lesson = {
-            id,
-            lessonName: 'FULL LESSON',
+            lessonId: id,
+            pCourseTitle: 'English',
+            pCourseId: 1,
+            pLangTitle: 'Spanish',
+            pLangId: 2,
+            lessonName: '¡Yo hablo español!',
+            reviewed: true,
+            board: mockBoard
         }
-        return lesson
+
+        return  (short) ? {
+            id,
+            lessonName: 'Lesson Name',
+            descriptionMain: 'Start from scratch',
+            descriptionSecondary: 'If you\'re just trying to learn a language',
+            emoji: '🇬🇧',
+            review: true,
+            secretTitle: 'eng-esp',
+        } : lesson
     }
 }
 

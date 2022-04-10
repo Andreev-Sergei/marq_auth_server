@@ -21,7 +21,7 @@ app.use(cors({credentials: true, origin: 'http://localhost:3000'}))
 app.use('/api_v1', router)
 
 
-app.use('/api_v1/core',  coreRouter)
+app.use('/api_v1/dashboard',  coreRouter)
 
 
 app.use(errorMiddleware) // middleware must be last element

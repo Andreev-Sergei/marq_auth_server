@@ -47,8 +47,7 @@ class CourseController {
         try {
             const {id} = req.params
             const {short} = req.query
-
-            const lesson = (short === 'true') ? await courseService.getOneShortLesson(id) : await courseService.getOneFullLesson(id)
+            const lesson = await courseService.getOneLesson(id, short)
             await res.json(lesson)
         } catch (e) {
             next(e)
