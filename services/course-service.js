@@ -112,11 +112,13 @@ class CourseService {
         const lang = langs.find(x => x.id === +id)
         return lang
     }
+
     async editLang(id) {
         const lang = langs.find(x => x.id === +id)
         return lang
     }
-    async getOneShortLesson(id){
+
+    async getOneShortLesson(id) {
         const lesson = {
             id,
             lessonName: 'Lesson Name',
@@ -128,10 +130,79 @@ class CourseService {
         }
         return lesson
     }
-    async getOneLesson(id, short){
+
+    async getOneLesson(id, short) {
+        const mockBoardByBlocks = [
+            {
+                blockId: 1,
+                messages: [
+                    {
+                        id: 1,
+                        type: 'MESSAGE',
+                        value: 'Middle! <i>It is test</i> message',
+                        messageType: 'USUAL'
+                    }, {
+                        id: 11,
+                        type: 'MESSAGE',
+                        value: 'Hello! It <i>is test message</i> ',
+                        messageType: 'USUAL'
+                    },
+                ],
+                userInput: {
+                    id: 4,
+                    type: 'TASK',
+                    taskType: 'INPUT',
+                    typeTitle: 'Input',
+                    keyboardType: 1,
+                    variants: [
+                        {id: 1, word: 'собака', right: true},
+                        {id: 2, word: 'кошка', right: false}
+                    ],
+                    value: 'Dog - <i>собака</i>'
+                },
+            },
+
+            // {
+            //     blockId: 2,
+            //     messages: [
+            //         {
+            //             id: 1232,
+            //             type: 'MESSAGE',
+            //             value: '<i>Second test</i> message',
+            //             messageType: 'VOCABULARY'
+            //         },
+            //         {
+            //             id: 234432,
+            //             type: 'MESSAGE',
+            //             value: 'Second <i>test</i> message',
+            //             messageType: 'VOCABULARY'
+            //         }],
+            //     userInput: {
+            //         id: 32,
+            //         type: 'TASK',
+            //         taskType: 'INPUT',
+            //         typeTitle: 'Input',
+            //         keyboardType: 3,
+            //         variants: [
+            //             {id: 1, word: 'собака', right: true},
+            //             {id: 2, word: 'кошка', right: false}
+            //         ],
+            //         value: 'Dog - <i>собака</i>'
+            //     },
+            // }, {
+            //     blockId: 3,
+            //     messages: [
+            //         {
+            //             id: 1323232,
+            //             type: 'MESSAGE',
+            //             value: '<i>Third test</i> message',
+            //             messageType: 'VOCABULARY'
+            //         }
+            //     ],
+            //     userInput: null
+            // }
+        ]
         const mockBoard = [
-            //{ blockId: 1, messages: ['hi how are u?', 'give a answer'], userInput: { id: 2 } }
-            //{ blockId: 2, messages: ['hi how are u?', 'give a answer'], userInput: { id: 2 } }
             {
                 id: 1,
                 type: 'MESSAGE',
@@ -177,10 +248,11 @@ class CourseService {
             pLangId: 2,
             lessonName: '¡Yo hablo español!',
             reviewed: true,
-            board: mockBoard
+            board: mockBoardByBlocks.map((b, i) => {
+                return {...b, order: i + 1}
+            })
         }
-
-        return  (short) ? {
+        return (short) ? {
             id,
             lessonName: 'Lesson Name',
             descriptionMain: 'Start from scratch',
@@ -190,6 +262,17 @@ class CourseService {
             secretTitle: 'eng-esp',
         } : lesson
     }
+
+    async editLesson(lessonId, data) {
+        const lesson = {lessonId, ...data}
+        return lesson
+    }
+
+    async addLesson(data) {
+        const lesson = {id: Date.now(), ...data}
+        return lesson
+    }
+
 }
 
 module.exports = new CourseService()

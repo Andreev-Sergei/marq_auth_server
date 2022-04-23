@@ -1,4 +1,4 @@
-const courseService = require('../services/course-service')
+const LessonService = require('../services/lesson-service')
 
 class CourseController {
 
@@ -48,27 +48,6 @@ class CourseController {
             const {id} = req.params
             const {short} = req.query
             const lesson = await courseService.getOneLesson(id, short)
-            await res.json(lesson)
-        } catch (e) {
-            next(e)
-        }
-    }
-
-    async addLesson(req, res, next) {
-        try {
-            const data = req.body
-            const lesson = await courseService.addLesson(data)
-            await res.json(lesson)
-        } catch (e) {
-            next(e)
-        }
-    }
-
-    async editLesson(req, res, next) {
-        try {
-            const {lessonId} = req.params
-            const data = req.body
-            const lesson = await courseService.editLesson(lessonId, data)
             await res.json(lesson)
         } catch (e) {
             next(e)
