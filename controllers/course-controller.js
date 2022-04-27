@@ -23,8 +23,8 @@ class CourseController {
 
     async getOneCourse(req, res, next) {
         try {
-            const {id} = req.params
-            const course = await courseService.getOneCourse(id)
+            const {courseId} = req.query
+            const course = await courseService.getOneCourse(courseId)
             await res.json(course)
         } catch (e) {
             next(e)
@@ -34,9 +34,8 @@ class CourseController {
 
     async getOneLang(req, res, next) {
         try {
-            const {id} = req.params
-
-            const lang = await courseService.getOneLang(id)
+            const {langId} = req.query
+            const lang = await courseService.getOneLang(langId)
             await res.json(lang)
         } catch (e) {
             next(e)
@@ -45,9 +44,8 @@ class CourseController {
 
     async getOneLesson(req, res, next) {
         try {
-            const {id} = req.params
-            const {short} = req.query
-            const lesson = await courseService.getOneLesson(id, short)
+            const {short,lessonId} = req.query
+            const lesson = await courseService.getOneLesson(lessonId, short)
             await res.json(lesson)
         } catch (e) {
             next(e)
@@ -81,6 +79,17 @@ class CourseController {
             console.log(data)
             const lang = await courseService.editLang(id)
             await res.json(lang)
+        } catch (e) {
+            next(e)
+        }
+    }
+    async aproveLesson(req, res, next) {
+        try {
+            const {lessonId} = req.params
+            const {approve} = req.body
+            console.log(approve)
+            //const lang = await courseService.editLang(id)
+            await res.json({approve})
         } catch (e) {
             next(e)
         }
