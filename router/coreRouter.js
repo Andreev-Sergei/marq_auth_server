@@ -16,7 +16,6 @@ coreRouter.get('/lang', CourseController.getOneLang)
 coreRouter.put('/lang', CourseController.editLang)
 
 // LESSON
-
 coreRouter.get('/lesson', CourseController.getOneLesson)
 coreRouter.put('/lesson', CourseController.editLesson)
 coreRouter.post('/lesson', CourseController.addLesson)
@@ -71,4 +70,5 @@ coreRouter.post('/upload', async (req, res) => {
     });
 
 })
+
 module.exports = coreRouter

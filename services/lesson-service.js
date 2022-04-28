@@ -27,6 +27,7 @@ class LessonService {
     }
     async moveMessage(messageId, fromBlockId, toBlockId) {
         // remove message by id
+        // if fromBlock.messages.length === 1 && !fromBlock.userInput {delite block }
     }
 
 }

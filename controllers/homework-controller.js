@@ -1,5 +1,3 @@
-
-
 const mockHomeWorkBoard = [
     {
         id: 32,
@@ -42,7 +40,7 @@ class HomeworkController {
     async getExercise(req, res, next) {
         try {
             const {lessonId, exerciseId} = req.query
-            const exercise = exerciseId == 3 ? null: {...exe, id: exerciseId}
+            const exercise = exerciseId == 3 ? null : {...exe, id: exerciseId}
             await res.json(exercise)
         } catch (e) {
             next(e)
@@ -63,7 +61,7 @@ class HomeworkController {
         try {
             const {lessonId, exerciseId} = req.query
             const exercise = req.body
-            await res.json({...exercise, id: exerciseId })
+            await res.json({...exercise, id: exerciseId})
         } catch (e) {
             next(e)
         }
@@ -74,7 +72,8 @@ class HomeworkController {
         try {
             const task = req.body
             const {lessonId, exerciseId} = req.query
-            await res.json({task: {...task, id: Date.now()}, lessonId, exerciseId})
+            const newTask = {task: {...task, id: Date.now()}}/// db insert task
+            res.json({newTask, lessonId, exerciseId})
         } catch (e) {
             next(e)
         }

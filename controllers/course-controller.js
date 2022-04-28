@@ -76,7 +76,6 @@ class CourseController {
     async editLang(req, res, next) {
         try {
             const {id, data} = req.params
-            console.log(data)
             const lang = await courseService.editLang(id)
             await res.json(lang)
         } catch (e) {
@@ -87,7 +86,6 @@ class CourseController {
         try {
             const {lessonId} = req.params
             const {approve} = req.body
-            console.log(approve)
             //const lang = await courseService.editLang(id)
             await res.json({approve})
         } catch (e) {

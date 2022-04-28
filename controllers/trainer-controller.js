@@ -1,5 +1,5 @@
 
-const mockNoard = [
+const mockBoard = [
     {
         id: 1,
         word: 'dog',
@@ -67,7 +67,7 @@ class TrainerController {
     async getTasks(req, res, next) {
         try {
             const {lessonId} = req.query
-            const board = mockNoard
+            const board = mockBoard
             await res.json(board)
         } catch (e) {
             next(e)
